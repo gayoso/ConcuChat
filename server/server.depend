@@ -1,0 +1,121 @@
+# depslib dependency file v1.0
+1465783786 source:/home/gabriel/concu/ConcuChat/src/ClientSocket.cpp
+	"ClientSocket.h"
+	<iostream>
+	"unistd.h"
+	"fcntl.h"
+
+1465779506 /home/gabriel/concu/ConcuChat/include/ClientSocket.h
+	<sys/types.h>
+	<sys/socket.h>
+	<strings.h>
+	<arpa/inet.h>
+	<netdb.h>
+	<string>
+	<string.h>
+	<errno.h>
+	<unistd.h>
+	"Socket.h"
+
+1466101077 /home/gabriel/concu/ConcuChat/include/Socket.h
+	<sys/types.h>
+	<sys/socket.h>
+	<strings.h>
+	<netinet/in.h>
+
+1465775230 source:/home/gabriel/concu/ConcuChat/src/LockFile.cpp
+	"LockFile.h"
+
+1465775230 /home/gabriel/concu/ConcuChat/include/LockFile.h
+	<unistd.h>
+	<fcntl.h>
+	<string>
+
+1462859450 source:/home/gabriel/concu/ConcuChat/src/Logger.cpp
+	"Logger.h"
+	<fstream>
+	<ctime>
+	<sys/time.h>
+	"errno.h"
+	"string.h"
+	"LockFile.h"
+
+1465775955 /home/gabriel/concu/ConcuChat/include/Logger.h
+	<string>
+	"Runnable.h"
+
+1462998438 /home/gabriel/concu/ConcuChat/include/Runnable.h
+	<unistd.h>
+
+1462998438 source:/home/gabriel/concu/ConcuChat/src/Runnable.cpp
+	<unistd.h>
+	<stdlib.h>
+	<stdio.h>
+	"Runnable.h"
+	"LockFile.h"
+
+1463072491 source:/home/gabriel/concu/ConcuChat/src/Semaforo.cpp
+	"Semaforo.h"
+	"LockFile.h"
+	"Logger.h"
+
+1462859450 /home/gabriel/concu/ConcuChat/include/Semaforo.h
+	<sys/ipc.h>
+	<sys/sem.h>
+	<sys/types.h>
+	<string>
+
+1466109869 source:/home/gabriel/concu/ConcuChat/src/ServerSocket.cpp
+	"ServerSocket.h"
+	"defines.h"
+	<iostream>
+	<algorithm>
+	"unistd.h"
+	"fcntl.h"
+
+1466093598 /home/gabriel/concu/ConcuChat/include/ServerSocket.h
+	<sys/types.h>
+	<sys/socket.h>
+	<strings.h>
+	<arpa/inet.h>
+	<netdb.h>
+	<string>
+	<string.h>
+	<errno.h>
+	<unistd.h>
+	<vector>
+	"Socket.h"
+
+1466104494 /home/gabriel/concu/ConcuChat/include/defines.h
+
+1462859450 source:/home/gabriel/concu/ConcuChat/src/SIG_Trap.cpp
+	"SIG_Trap.h"
+
+1462859450 /home/gabriel/concu/ConcuChat/include/SIG_Trap.h
+	<signal.h>
+	<assert.h>
+	"EventHandler.h"
+
+1462859450 /home/gabriel/concu/ConcuChat/include/EventHandler.h
+
+1462859450 source:/home/gabriel/concu/ConcuChat/src/SignalHandler.cpp
+	"SignalHandler.h"
+
+1462859450 /home/gabriel/concu/ConcuChat/include/SignalHandler.h
+	<signal.h>
+	<stdio.h>
+	<memory.h>
+	"EventHandler.h"
+
+1466109367 source:/home/gabriel/concu/ConcuChat/src/Socket.cpp
+	"Socket.h"
+	"unistd.h"
+	"fcntl.h"
+
+1466104505 source:/home/gabriel/concu/ConcuChat/server/EchoServer.cc
+	<iostream>
+	"ServerSocket.h"
+	"SignalHandler.h"
+	"SIG_Trap.h"
+	"defines.h"
+

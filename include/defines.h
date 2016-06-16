@@ -1,0 +1,9 @@
+#ifndef DEFINES_H_INCLUDED
+#define DEFINES_H_INCLUDED
+
+#define CLIENT_ID "_client"
+#define EXIT_MESSAGE "_"
+#define BUFFSIZE 255
+#define SERVER_PORT 16000
+
+#endif // DEFINES_H_INCLUDED
