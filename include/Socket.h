@@ -16,15 +16,12 @@ class Socket {
 		Socket ( const unsigned int port );
 		virtual ~Socket ();
 
-		virtual void abrirConexion () = 0;
+		//virtual void abrirConexion () = 0;
 
-		virtual int enviar ( const void* buffer,const unsigned int buffSize ) = 0;
+		//virtual int enviar ( const void* buffer,const unsigned int buffSize ) = 0;
 		//virtual int recibir ( void* buffer,const unsigned int buffSize ) = 0;
 
-		virtual void cerrarConexion () = 0;
-
-		void setNonBlocking();
-		void setBlocking();
+		//virtual void cerrarConexion () = 0;
 };
 
 #endif /* SOCKET_H_ */

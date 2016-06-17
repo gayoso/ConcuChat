@@ -1,5 +1,4 @@
 #include "ClientSocket.h"
-#include <iostream>
 
 ClientSocket :: ClientSocket ( const std::string& ipServidor,const unsigned int port ) : Socket ( port ) {
 	this->ipServidor = ipServidor;
@@ -23,7 +22,6 @@ void ClientSocket :: abrirConexion () {
     int connectOk = connect ( this->fdSocket,
     						(const struct sockaddr *)&(this->serv_addr),
     						sizeof(this->serv_addr) );
-
     if ( connectOk < 0 ) {
     	std::string mensaje = std::string("Error en connect(): ") + std::string(strerror(errno));
     	throw mensaje;

@@ -17,7 +17,7 @@
 	<unistd.h>
 	"Socket.h"
 
-1466101077 /home/gabriel/concu/ConcuChat/include/Socket.h
+1466185067 /home/gabriel/concu/ConcuChat/include/Socket.h
 	<sys/types.h>
 	<sys/socket.h>
 	<strings.h>
@@ -65,15 +65,15 @@
 	<sys/types.h>
 	<string>
 
-1466109869 source:/home/gabriel/concu/ConcuChat/src/ServerSocket.cpp
+1466191517 source:/home/gabriel/concu/ConcuChat/src/ServerSocket.cpp
 	"ServerSocket.h"
-	"defines.h"
+	"ServerSocketListener.h"
 	<iostream>
-	<algorithm>
-	"unistd.h"
-	"fcntl.h"
+	<sys/types.h>
+	<unistd.h>
+	<sys/wait.h>
 
-1466093598 /home/gabriel/concu/ConcuChat/include/ServerSocket.h
+1466185724 /home/gabriel/concu/ConcuChat/include/ServerSocket.h
 	<sys/types.h>
 	<sys/socket.h>
 	<strings.h>
@@ -86,7 +86,7 @@
 	<vector>
 	"Socket.h"
 
-1466104494 /home/gabriel/concu/ConcuChat/include/defines.h
+1466183113 /home/gabriel/concu/ConcuChat/include/defines.h
 
 1462859450 source:/home/gabriel/concu/ConcuChat/src/SIG_Trap.cpp
 	"SIG_Trap.h"
@@ -107,15 +107,25 @@
 	<memory.h>
 	"EventHandler.h"
 
-1466109367 source:/home/gabriel/concu/ConcuChat/src/Socket.cpp
+1410147822 source:/home/gabriel/concu/ConcuChat/src/Socket.cpp
 	"Socket.h"
-	"unistd.h"
-	"fcntl.h"
 
-1466104505 source:/home/gabriel/concu/ConcuChat/server/EchoServer.cc
+1466185246 source:/home/gabriel/concu/ConcuChat/server/EchoServer.cc
 	<iostream>
 	"ServerSocket.h"
+	"defines.h"
 	"SignalHandler.h"
 	"SIG_Trap.h"
+	<vector>
+
+1466191755 source:/home/gabriel/concu/ConcuChat/src/ServerSocketListener.cpp
+	"ServerSocketListener.h"
 	"defines.h"
+	"SignalHandler.h"
+	"SIG_Trap.h"
+	<iostream>
+
+1466191154 /home/gabriel/concu/ConcuChat/include/ServerSocketListener.h
+	"ServerSocket.h"
+	"Runnable.h"
 

@@ -1,6 +1,4 @@
 #include "Socket.h"
-#include "unistd.h"
-#include "fcntl.h"
 
 Socket :: Socket ( const unsigned int port ) {
 
@@ -15,16 +13,4 @@ Socket :: Socket ( const unsigned int port ) {
 }
 
 Socket::~Socket () {
-}
-
-void Socket::setNonBlocking() {
-    long arg = fcntl(this->fdSocket, F_GETFL, NULL);
-    arg |= O_NONBLOCK;
-    fcntl(this->fdSocket, F_SETFL, arg);
-}
-
-void Socket::setBlocking() {
-    long arg = fcntl(this->fdSocket, F_GETFL, NULL);
-    arg &= ~O_NONBLOCK;
-    fcntl(this->fdSocket, F_SETFL, arg);
 }

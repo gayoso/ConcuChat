@@ -1,54 +1,61 @@
 #include <iostream>
 #include "ServerSocket.h"
+#include "defines.h"
 #include "SignalHandler.h"
 #include "SIG_Trap.h"
-#include "defines.h"
+#include <vector>
 
 int main () {
 
-	SIG_Trap sigint_handler(SIGINT);
+    SIG_Trap sigint_handler(SIGINT);
     SignalHandler::getInstance()->registrarHandler(SIGINT, &sigint_handler);
 
-	try {
+    ServerSocket socket ( SERVER_PORT );
+    socket.abrirConexion();
+
+    //std::vector<pid_t> serverListeners;
+
+    //char buffer[BUFFSIZE];
+    std::cout << "EchoServer: esperando conexiones" << std::endl;
+    try {
+        while (!sigint_handler.signalWasReceived()) {
+            socket.aceptarCliente();
+            //ServerSocketListener listener(socket.client_socket);
+            //serverListeners.push_back(listener.run());
+        }
+    } catch ( std::string& mensaje ) {
+		std::cout << mensaje << std::endl;
+	}
+
+	socket.cerrarConexion();
+
+	/*try {
 		ServerSocket socket ( SERVER_PORT );
 		char buffer[BUFFSIZE];
 
-		std::cout << "ConcuChatServer: esperando conexiones" << std::endl << std::endl;
+		std::cout << "EchoServer: esperando conexiones" << std::endl;
+		std::cout << "EchoServer: enviar la cadena 's' desde el cliente para terminar" << std::endl << std::endl;
 		socket.abrirConexion();
+		socket.aceptarCliente();
 
 		std::string peticion;
-		int bytesRecibidos;
 
-		while (!sigint_handler.signalWasReceived()) {
-            // veo si alguien se quiere conectar
-            socket.aceptarCliente();
+		do {
+			int bytesRecibidos = socket.recibir ( static_cast<void*>(buffer),BUFFSIZE );
+			peticion = buffer;
+			peticion.resize(bytesRecibidos);
+			std::cout << "EchoServer: dato recibido: " << peticion << std::endl;
 
-			bytesRecibidos = -1;
-			for(int i = 0; i < socket.getCantClientes(); ++i){
+			std::cout << "EchoServer: enviando respuesta . . ." << std::endl;
+			socket.enviar ( static_cast<const void*>(peticion.c_str()),peticion.size() );
+		} while ( peticion != std::string("s") );
 
-                // veo si alguien mando algo
-                bytesRecibidos = socket.recibir ( static_cast<void*>(buffer),BUFFSIZE,i );
-                // si no mandaron nada, sigo
-                if (bytesRecibidos == -1) {
-                    continue;
-                }
-
-                peticion = buffer;
-                peticion.resize(bytesRecibidos);
-                std::cout << "ConcuChatServer: dato recibido: '" << peticion <<
-                                "' de cliente: '" << std::to_string(i) << "'" << std::endl;
-                // si mandaron algo, veo que hago
-                socket.handleInput(peticion, i);
-            }
-		}
-
-		std::cout << "ConcuChatServer: cerrando conexion" << std::endl;
+		std::cout << "EchoServer: cerrando conexion" << std::endl;
 		socket.cerrarConexion ();
 
 	} catch ( std::string& mensaje ) {
 		std::cout << mensaje << std::endl;
-	}
+	}*/
 
 	return 0;
 }
-

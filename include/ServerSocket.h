@@ -14,39 +14,27 @@
 
 #include "Socket.h"
 
+
 class ServerSocket : public Socket {
 
-	private:
-		std::vector<int> clientSockets;
-		std::vector<std::string> usernames;
-
+	protected:
+		//int clientSocket;
 		static const int CONEXIONES_PENDIENTES = 20;
+		std::vector<pid_t> serverListeners;
 
 	public:
 		ServerSocket ( const unsigned int port );
 		~ServerSocket ();
 
+		//int clientSocket;
+
 		void abrirConexion ();
 		void aceptarCliente();
 
-		bool isValidUsername(std::string username);
-		void registerUsername(std::string username, int clientIndex);
-
-		std::string getUsername(std::string message);
-        std::string getUsername(const void* buffer,const unsigned int buffSize);
-        std::string getMessage(std::string peticion);
-
-        bool isExitCode(std::string message);
-
-		int enviar ( const void* buffer,const unsigned int buffSize );
-		int enviar ( const void* buffer,const unsigned int buffSize, int clientIndex );
-		int recibir ( void* buffer,const unsigned int buffSize, int clientIndex );
-		void handleInput(std::string peticion, int clientIndex);
+		//int enviar ( const void* buffer,const unsigned int buffSize );
+		//int recibir ( void* buffer,const unsigned int buffSize );
 
 		void cerrarConexion ();
-		void cerrarConexion ( unsigned int clientIndex );
-
-		int getCantClientes() { return clientSockets.size(); }
 };
 
 #endif /* SERVERSOCKET_H_ */

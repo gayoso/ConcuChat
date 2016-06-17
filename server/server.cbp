@@ -15,6 +15,7 @@
 					<Add option="-std=c++11" />
 					<Add option="-g" />
 					<Add directory="../include" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -24,6 +25,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -37,10 +39,12 @@
 		<Unit filename="../include/EventHandler.h" />
 		<Unit filename="../include/LockFile.h" />
 		<Unit filename="../include/Logger.h" />
+		<Unit filename="../include/MemoriaCompartida.h" />
 		<Unit filename="../include/Runnable.h" />
 		<Unit filename="../include/SIG_Trap.h" />
 		<Unit filename="../include/Semaforo.h" />
 		<Unit filename="../include/ServerSocket.h" />
+		<Unit filename="../include/ServerSocketListener.h" />
 		<Unit filename="../include/SignalHandler.h" />
 		<Unit filename="../include/Socket.h" />
 		<Unit filename="../include/defines.h" />
@@ -50,6 +54,7 @@
 		<Unit filename="../src/SIG_Trap.cpp" />
 		<Unit filename="../src/Semaforo.cpp" />
 		<Unit filename="../src/ServerSocket.cpp" />
+		<Unit filename="../src/ServerSocketListener.cpp" />
 		<Unit filename="../src/SignalHandler.cpp" />
 		<Unit filename="../src/Socket.cpp" />
 		<Unit filename="EchoServer.cc" />

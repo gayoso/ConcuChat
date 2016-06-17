@@ -39,6 +39,7 @@
 		<Unit filename="../include/EventHandler.h" />
 		<Unit filename="../include/LockFile.h" />
 		<Unit filename="../include/Logger.h" />
+		<Unit filename="../include/MemoriaCompartida.h" />
 		<Unit filename="../include/Runnable.h" />
 		<Unit filename="../include/SIG_Trap.h" />
 		<Unit filename="../include/Semaforo.h" />
