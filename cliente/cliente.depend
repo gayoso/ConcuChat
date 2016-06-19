@@ -82,7 +82,7 @@
 	<vector>
 	"Socket.h"
 
-1466104494 /home/gabriel/concu/ConcuChat/include/defines.h
+1466288386 /home/gabriel/concu/ConcuChat/include/defines.h
 
 1462859450 source:/home/gabriel/concu/ConcuChat/src/SIG_Trap.cpp
 	"SIG_Trap.h"
@@ -106,8 +106,11 @@
 1410147822 source:/home/gabriel/concu/ConcuChat/src/Socket.cpp
 	"Socket.h"
 
-1466181664 source:/home/gabriel/concu/ConcuChat/cliente/EchoClient.cc
+1466317385 source:/home/gabriel/concu/ConcuChat/cliente/EchoClient.cc
 	<iostream>
 	<string.h>
+	"defines.h"
 	"ClientSocket.h"
+	"SignalHandler.h"
+	"SIG_Trap.h"
 

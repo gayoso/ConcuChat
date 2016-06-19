@@ -1,11 +1,8 @@
 # depslib dependency file v1.0
-1465783786 source:/home/gabriel/concu/ConcuChat/src/ClientSocket.cpp
+1466182074 source:/home/gabriel/concu/ConcuChat/src/ClientSocket.cpp
 	"ClientSocket.h"
-	<iostream>
-	"unistd.h"
-	"fcntl.h"
 
-1465779506 /home/gabriel/concu/ConcuChat/include/ClientSocket.h
+1466182072 /home/gabriel/concu/ConcuChat/include/ClientSocket.h
 	<sys/types.h>
 	<sys/socket.h>
 	<strings.h>
@@ -65,15 +62,17 @@
 	<sys/types.h>
 	<string>
 
-1466191517 source:/home/gabriel/concu/ConcuChat/src/ServerSocket.cpp
+1466291458 source:/home/gabriel/concu/ConcuChat/src/ServerSocket.cpp
 	"ServerSocket.h"
 	"ServerSocketListener.h"
+	"ServerSocketClSender.h"
+	"ServerSocketSender.h"
 	<iostream>
 	<sys/types.h>
 	<unistd.h>
 	<sys/wait.h>
 
-1466185724 /home/gabriel/concu/ConcuChat/include/ServerSocket.h
+1466291161 /home/gabriel/concu/ConcuChat/include/ServerSocket.h
 	<sys/types.h>
 	<sys/socket.h>
 	<strings.h>
@@ -86,7 +85,7 @@
 	<vector>
 	"Socket.h"
 
-1466183113 /home/gabriel/concu/ConcuChat/include/defines.h
+1466288386 /home/gabriel/concu/ConcuChat/include/defines.h
 
 1462859450 source:/home/gabriel/concu/ConcuChat/src/SIG_Trap.cpp
 	"SIG_Trap.h"
@@ -110,22 +109,99 @@
 1410147822 source:/home/gabriel/concu/ConcuChat/src/Socket.cpp
 	"Socket.h"
 
-1466185246 source:/home/gabriel/concu/ConcuChat/server/EchoServer.cc
+1466316686 source:/home/gabriel/concu/ConcuChat/server/EchoServer.cc
 	<iostream>
 	"ServerSocket.h"
+	"ServerSocketSender.h"
 	"defines.h"
 	"SignalHandler.h"
 	"SIG_Trap.h"
 	<vector>
+	<sys/wait.h>
 
-1466191755 source:/home/gabriel/concu/ConcuChat/src/ServerSocketListener.cpp
+1466316827 source:/home/gabriel/concu/ConcuChat/src/ServerSocketListener.cpp
 	"ServerSocketListener.h"
 	"defines.h"
 	"SignalHandler.h"
 	"SIG_Trap.h"
+	"ServerMensaje.h"
 	<iostream>
 
-1466191154 /home/gabriel/concu/ConcuChat/include/ServerSocketListener.h
-	"ServerSocket.h"
+1466291430 /home/gabriel/concu/ConcuChat/include/ServerSocketListener.h
 	"Runnable.h"
+	"Cola.h"
+	"ServerMensaje.h"
+
+1466317341 source:/home/gabriel/concu/ConcuChat/src/ServerSocketSender.cpp
+	"ServerSocketSender.h"
+	"SignalHandler.h"
+	"SIG_Trap.h"
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<iostream>
+
+1466290790 /home/gabriel/concu/ConcuChat/include/ServerSocketSender.h
+	"defines.h"
+	"MemoriaCompartida.h"
+	"Semaforo.h"
+	"Cola.h"
+	"Socket.h"
+	"Runnable.h"
+	"ServerMensaje.h"
+	"FifoEscritura.h"
+	<map>
+
+1466214790 /home/gabriel/concu/ConcuChat/include/MemoriaCompartida.h
+	<sys/types.h>
+	<sys/ipc.h>
+	<sys/shm.h>
+	<string>
+	"Logger.h"
+
+1466283863 /home/gabriel/concu/ConcuChat/include/Cola.h
+	<sys/types.h>
+	<sys/msg.h>
+	<sys/ipc.h>
+	<stdio.h>
+	<string>
+
+1466284704 /home/gabriel/concu/ConcuChat/include/ServerMensaje.h
+	"defines.h"
+
+1465775230 source:/home/gabriel/concu/ConcuChat/src/Fifo.cpp
+	"Fifo.h"
+	<stdio.h>
+
+1465775230 /home/gabriel/concu/ConcuChat/include/Fifo.h
+	<string>
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<unistd.h>
+
+1465775230 source:/home/gabriel/concu/ConcuChat/src/FifoEscritura.cpp
+	"FifoEscritura.h"
+	<stdio.h>
+
+1465775230 /home/gabriel/concu/ConcuChat/include/FifoEscritura.h
+	"Fifo.h"
+
+1465775230 source:/home/gabriel/concu/ConcuChat/src/FifoLectura.cpp
+	"FifoLectura.h"
+	<stdio.h>
+
+1465775230 /home/gabriel/concu/ConcuChat/include/FifoLectura.h
+	"Fifo.h"
+
+1466315217 source:/home/gabriel/concu/ConcuChat/src/ServerSocketClSender.cpp
+	"ServerSocketClSender.h"
+	"SignalHandler.h"
+	"SIG_Trap.h"
+	"defines.h"
+
+1466290554 /home/gabriel/concu/ConcuChat/include/ServerSocketClSender.h
+	"Runnable.h"
+	"FifoLectura.h"
+	<string>
 

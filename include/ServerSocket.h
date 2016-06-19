@@ -21,6 +21,7 @@ class ServerSocket : public Socket {
 		//int clientSocket;
 		static const int CONEXIONES_PENDIENTES = 20;
 		std::vector<pid_t> serverListeners;
+		std::vector<pid_t> serverSenders;
 
 	public:
 		ServerSocket ( const unsigned int port );

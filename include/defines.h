@@ -5,9 +5,10 @@
 #define EXIT_MESSAGE "_"
 #define BUFFSIZE 255
 #define SERVER_PORT 16000
+#define MAX_CLIENTS 20
 
-#define SEM_CLIENTSOCKETS_ARRAY 0
-#define SHM_CANT_CLIENTSOCKETS_ARRAY 0
-#define NOM_CLIENTSOCKETS_ARRAY "clientsockets_array"
+#define NOM_SERVER_SENDER "server_sender"
+#define C_SENDER_RECIBIDOS 0
+#define C_SENDER_ENVIADOS 1
 
 #endif // DEFINES_H_INCLUDED

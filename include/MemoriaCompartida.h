@@ -15,7 +15,7 @@
 
 template <class T> class MemoriaCompartida {
 
-private:
+protected:
 	int shmId;
 	T*	ptrDatos;
 

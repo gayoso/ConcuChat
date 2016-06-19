@@ -1,5 +1,7 @@
 #include "ServerSocket.h"
 #include "ServerSocketListener.h"
+#include "ServerSocketClSender.h"
+#include "ServerSocketSender.h"
 #include <iostream>
 #include <sys/types.h>
 #include <unistd.h>
@@ -50,9 +52,15 @@ void ServerSocket :: aceptarCliente() {
 		std::string mensaje = std::string("Error en accept(): ") + std::string(strerror(errno));
 		//throw mensaje;
 	} else {
-        ServerSocketListener listener(clientSocket);
+        std::cout << "acepto en socket " << clientSocket << std::endl;
+
+        ServerSocketListener listener(clientSocket, NOM_SERVER_SENDER + std::to_string(serverSenders.size()+1));
         pid_t pid = listener.run();
         serverListeners.push_back(pid);
+
+        ServerSocketClSender sender(clientSocket, NOM_SERVER_SENDER + std::to_string(serverSenders.size()+1));
+        pid = sender.run();
+        serverSenders.push_back(pid);
 	}
 }
 
@@ -62,6 +70,8 @@ void ServerSocket :: cerrarConexion () {
 	for(int i = 0; i < serverListeners.size(); ++i) {
         kill(serverListeners[i], SIGINT);
         waitpid(serverListeners[i], &status, 0);
+        kill(serverSenders[i], SIGINT);
+        waitpid(serverSenders[i], &status, 0);
 	}
 	close ( this->fdSocket );
 }
