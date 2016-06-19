@@ -3,6 +3,8 @@
 #include "SignalHandler.h"
 #include "SIG_Trap.h"
 #include "ServerMensaje.h"
+#include "ServerSocketClSender.h"
+#include "Logger.h"
 #include <iostream>
 
 ServerSocketListener::ServerSocketListener(int clientSocket, std::string nombre) :
@@ -23,12 +25,19 @@ void ServerSocketListener::_run() {
 
     colaDeEnvio.get();
 
+    Logger::log(nombre + "_L", "Creo cl sender" , DEBUG);
+    ServerSocketClSender sender(clientSocket, nombre);
+    clientSender = sender.run();
+
     char buffer[BUFFSIZE];
     std::string peticion;
+
+    Logger::log(nombre + "_L", "Mando CONN START a sender" , DEBUG);
     mensaje recibido;
-    recibido.mtype = CONNETION_START;
+    recibido.mtype = CONNECTION_START;
     recibido.socket = this->clientSocket;
-    strcpy ( recibido.texto,nombre.c_str() );
+    peticion = nombre + SEPARATOR + std::to_string(getpid());
+    strcpy ( recibido.texto,peticion.c_str() );
     colaDeEnvio.escribir(recibido);
 
     while(!sigint_handler.signalWasReceived()) {
@@ -36,28 +45,27 @@ void ServerSocketListener::_run() {
         if (!sigint_handler.signalWasReceived()) {
             peticion = buffer;
             peticion.resize(bytesRecibidos);
-            std::cout << "ServerListener: " << getpid() << ": dato recibido: " << peticion;
-            std::cout << ", de : " << clientSocket << std::endl;
+            //std::cout << "ServerListener: " << getpid() << ": dato recibido: " << peticion;
+            //std::cout << ", de : " << clientSocket << std::endl;
+            Logger::log(nombre + "_L", "recibi " + peticion + " de " + std::to_string(clientSocket) , DEBUG);
 
-            if (peticion == EXIT_MESSAGE) {
-                recibido.mtype = CONNECTION_END;
-            } else {
-                recibido.mtype = TEXT;
-            }
+            recibido.mtype = (peticion == EXIT_MESSAGE? CONNECTION_END : TEXT);
             recibido.socket = this->clientSocket;
-            //recibido.msize = bytesRecibidos;
+            recibido.msize = bytesRecibidos;
             strcpy ( recibido.texto,peticion.c_str() );
 
+            Logger::log(nombre + "_L", "Forwardeo a sender" , DEBUG);
             colaDeEnvio.escribir(recibido);
 
             if (peticion == EXIT_MESSAGE) {
                 raise(SIGINT);
             }
-            //std::cout << "EchoServer: " << getpid() << ": enviando respuesta . . ." << std::endl;
-            //this->enviar ( static_cast<const void*>(peticion.c_str()),peticion.size() );
         }
     }
-    //cerrarConexion();
+
+    Logger::log(nombre + "_L", "Cierro todo" , DEBUG);
+    kill(clientSender, SIGINT);
+    cerrarConexion();
 }
 
 void ServerSocketListener::init() {

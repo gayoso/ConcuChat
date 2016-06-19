@@ -16,6 +16,7 @@
 					<Add option="-std=c++11" />
 					<Add option="-g" />
 					<Add directory="../include" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -25,6 +26,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -35,6 +37,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="../include/ClientListener.h" />
 		<Unit filename="../include/ClientSocket.h" />
 		<Unit filename="../include/EventHandler.h" />
 		<Unit filename="../include/LockFile.h" />
@@ -46,6 +49,7 @@
 		<Unit filename="../include/SignalHandler.h" />
 		<Unit filename="../include/Socket.h" />
 		<Unit filename="../include/defines.h" />
+		<Unit filename="../src/ClientListener.cpp" />
 		<Unit filename="../src/ClientSocket.cpp" />
 		<Unit filename="../src/LockFile.cpp" />
 		<Unit filename="../src/Logger.cpp" />

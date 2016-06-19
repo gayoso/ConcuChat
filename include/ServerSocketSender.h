@@ -22,6 +22,7 @@ class ServerSocketSender : public Socket, public Runnable
         //std::vector<int> clientSockets;
         Cola<mensaje> colaDeRecibidos;
         std::map<int, FifoEscritura*> fifosDeEnvio;
+        std::map<int, pid_t> serverListeners;
 
         void _run();
         void init();

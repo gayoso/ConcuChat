@@ -5,7 +5,7 @@
 
 #define ANY_MESSAGE 0
 #define	TEXT 1
-#define CONNETION_START 2
+#define CONNECTION_START 2
 #define CONNECTION_END 3
 //#define	RESPUESTA	2
 //#define TEXTO_SIZE	255

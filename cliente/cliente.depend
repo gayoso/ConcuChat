@@ -1,8 +1,10 @@
 # depslib dependency file v1.0
-1466182074 source:/home/gabriel/concu/ConcuChat/src/ClientSocket.cpp
+1466362333 source:/home/gabriel/concu/ConcuChat/src/ClientSocket.cpp
 	"ClientSocket.h"
+	"ClientListener.h"
+	<sys/wait.h>
 
-1466182072 /home/gabriel/concu/ConcuChat/include/ClientSocket.h
+1466362114 /home/gabriel/concu/ConcuChat/include/ClientSocket.h
 	<sys/types.h>
 	<sys/socket.h>
 	<strings.h>
@@ -28,7 +30,7 @@
 	<fcntl.h>
 	<string>
 
-1462859450 source:/home/gabriel/concu/ConcuChat/src/Logger.cpp
+1466365547 source:/home/gabriel/concu/ConcuChat/src/Logger.cpp
 	"Logger.h"
 	<fstream>
 	<ctime>
@@ -37,7 +39,7 @@
 	"string.h"
 	"LockFile.h"
 
-1465775955 /home/gabriel/concu/ConcuChat/include/Logger.h
+1466365459 /home/gabriel/concu/ConcuChat/include/Logger.h
 	<string>
 	"Runnable.h"
 
@@ -82,7 +84,7 @@
 	<vector>
 	"Socket.h"
 
-1466288386 /home/gabriel/concu/ConcuChat/include/defines.h
+1466365950 /home/gabriel/concu/ConcuChat/include/defines.h
 
 1462859450 source:/home/gabriel/concu/ConcuChat/src/SIG_Trap.cpp
 	"SIG_Trap.h"
@@ -106,11 +108,23 @@
 1410147822 source:/home/gabriel/concu/ConcuChat/src/Socket.cpp
 	"Socket.h"
 
-1466317385 source:/home/gabriel/concu/ConcuChat/cliente/EchoClient.cc
+1466365161 source:/home/gabriel/concu/ConcuChat/cliente/EchoClient.cc
 	<iostream>
 	<string.h>
 	"defines.h"
 	"ClientSocket.h"
 	"SignalHandler.h"
 	"SIG_Trap.h"
+	"Logger.h"
+
+1466365155 source:/home/gabriel/concu/ConcuChat/src/ClientListener.cpp
+	"ClientListener.h"
+	"SignalHandler.h"
+	"SIG_Trap.h"
+	"defines.h"
+	"Logger.h"
+	<iostream>
+
+1466362281 /home/gabriel/concu/ConcuChat/include/ClientListener.h
+	"Runnable.h"
 

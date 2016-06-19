@@ -2,6 +2,8 @@
 #include "SignalHandler.h"
 #include "SIG_Trap.h"
 #include "defines.h"
+#include "Logger.h"
+#include <iostream>
 
 ServerSocketClSender::ServerSocketClSender(int clientSocket, std::string nombre) :
     clientSocket(clientSocket), nombre(nombre), fifoEnviar(nombre)
@@ -16,6 +18,8 @@ ServerSocketClSender::~ServerSocketClSender()
 
 void ServerSocketClSender::_run() {
 
+    Logger::log(nombre, "Empiezo cl sender", DEBUG);
+
     SIG_Trap sigint_handler(SIGINT);
     SignalHandler::getInstance()->registrarHandler(SIGINT, &sigint_handler);
 
@@ -28,13 +32,19 @@ void ServerSocketClSender::_run() {
         if (!sigint_handler.signalWasReceived()) {
             respuesta = buffer;
             respuesta.resize(bytesLeidos);
+            Logger::log(nombre, "Envio " + respuesta, DEBUG);
+            //std::cout << "ServerClSender: envio " << respuesta << std::endl;
             enviar(respuesta.c_str(), respuesta.size());
-            if(respuesta == "CONNETION_END") {
-                raise(SIGINT);
-            }
         }
     }
 
+    // envio exit message para que se desconecte el cliente
+    respuesta = EXIT_MESSAGE;
+    Logger::log(nombre, "Envio exit message" , DEBUG);
+    enviar(respuesta.c_str(), respuesta.size());
+
+    // cierro estructuras
+    Logger::log(nombre, "Cierro estructuras temporales" , DEBUG);
     fifoEnviar.cerrar();
     fifoEnviar.eliminar();
     unlink(nombre.c_str());
@@ -42,8 +52,7 @@ void ServerSocketClSender::_run() {
 }
 
 void ServerSocketClSender::init() {
-    //close ( open ( nombre.c_str(),O_CREAT,0777 ) );
-
+    Logger::log(nombre, "Creo estructuras temporales" , DEBUG);
     fifoEnviar.crear();
 }
 

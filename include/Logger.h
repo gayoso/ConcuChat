@@ -20,6 +20,7 @@ class Logger
 
         void setLogPath(std::string path) { log_path = path; }
         static Logger* getInstance();
+        static void destruir();
         static void log(std::string name, std::string comment, LOG_MODE mode);
         static void logErrno(std::string name);
 
@@ -29,7 +30,7 @@ class Logger
 
         Logger();
         void _log(std::string name, std::string comment, LOG_MODE mode);
-        Logger* instancia;
+        static Logger* instancia;
 
         LOG_MODE mode;
         std::string log_path;

@@ -17,6 +17,7 @@ class ClientSocket : public Socket {
 
 	private:
 		std::string ipServidor;
+		pid_t clientListener;
 
 	public:
 		ClientSocket ( const std::string& ipServidor,const unsigned int port );

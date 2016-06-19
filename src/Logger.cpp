@@ -6,7 +6,7 @@
 #include "string.h"
 #include "LockFile.h"
 
-static Logger* instance = 0;
+Logger* Logger::instancia = 0;
 
 Logger::Logger()
 {
@@ -22,6 +22,11 @@ Logger::Logger()
 }
 
 Logger::~Logger()
+{
+
+}
+
+void Logger::destruir()
 {
     if(instancia != NULL)
         delete instancia;
@@ -81,10 +86,10 @@ void Logger::_log(std::string name, std::string comment, LOG_MODE comment_mode){
 }
 
 Logger* Logger::getInstance(){
-    if(!instance){
-        instance = new Logger;
+    if(!instancia){
+        instancia = new Logger;
     }
-    return instance;
+    return instancia;
 }
 
 void Logger::log(std::string name, std::string comment, LOG_MODE mode){

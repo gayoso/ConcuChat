@@ -57,7 +57,6 @@
 		<Unit filename="../include/SignalHandler.h" />
 		<Unit filename="../include/Socket.h" />
 		<Unit filename="../include/defines.h" />
-		<Unit filename="../src/ClientSocket.cpp" />
 		<Unit filename="../src/Fifo.cpp" />
 		<Unit filename="../src/FifoEscritura.cpp" />
 		<Unit filename="../src/FifoLectura.cpp" />

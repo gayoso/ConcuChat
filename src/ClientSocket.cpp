@@ -1,4 +1,8 @@
 #include "ClientSocket.h"
+#include "ClientListener.h"
+//#include <sys/types.h>
+//#include <unistd.h>
+#include <sys/wait.h>
 
 ClientSocket :: ClientSocket ( const std::string& ipServidor,const unsigned int port ) : Socket ( port ) {
 	this->ipServidor = ipServidor;
@@ -26,6 +30,10 @@ void ClientSocket :: abrirConexion () {
     	std::string mensaje = std::string("Error en connect(): ") + std::string(strerror(errno));
     	throw mensaje;
     }
+
+    ClientListener listener(this->fdSocket);
+    clientListener = listener.run();
+
 }
 
 int ClientSocket :: enviar ( const void* buffer,const unsigned int buffSize ) {
@@ -40,4 +48,7 @@ int ClientSocket :: recibir ( void* buffer,const unsigned int buffSize ) {
 
 void ClientSocket :: cerrarConexion () {
 	close ( this->fdSocket );
+	int status;
+	kill(clientListener, SIGINT);
+	waitpid(clientListener, &status, 0);
 }

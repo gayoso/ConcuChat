@@ -17,6 +17,7 @@ class ServerSocketListener : public Runnable
         int clientSocket;
         std::string nombre;
         Cola<mensaje> colaDeEnvio;
+        pid_t clientSender;
 
         void _run();
         void init();

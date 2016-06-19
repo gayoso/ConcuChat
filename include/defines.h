@@ -3,11 +3,12 @@
 
 #define CLIENT_ID "_client"
 #define EXIT_MESSAGE "_"
+#define SEPARATOR '#'
 #define BUFFSIZE 255
 #define SERVER_PORT 16000
 #define MAX_CLIENTS 20
 
-#define NOM_SERVER_SENDER "server_sender"
+#define NOM_SERVER_SENDER "SNDR"
 #define C_SENDER_RECIBIDOS 0
 #define C_SENDER_ENVIADOS 1
 
