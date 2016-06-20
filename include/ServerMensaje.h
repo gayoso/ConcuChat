@@ -7,12 +7,13 @@
 #define	TEXT 1
 #define CONNECTION_START 2
 #define CONNECTION_END 3
-//#define	RESPUESTA	2
-//#define TEXTO_SIZE	255
+#define NICKNAME_REQ 4
 
 typedef struct mensaje {
 	long mtype;
 	int socket;
+	int nsize;
+	char nickname[NICKSIZE];
 	int msize;
 	char texto[BUFFSIZE];
 } mensaje;

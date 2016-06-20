@@ -10,6 +10,7 @@
 #include "ServerMensaje.h"
 #include "FifoEscritura.h"
 #include <map>
+#include <set>
 
 class ServerSocketSender : public Socket, public Runnable
 {
@@ -23,6 +24,8 @@ class ServerSocketSender : public Socket, public Runnable
         Cola<mensaje> colaDeRecibidos;
         std::map<int, FifoEscritura*> fifosDeEnvio;
         std::map<int, pid_t> serverListeners;
+        std::set<std::string> nicknames;
+        std::map<int, std::string> nicknamesBySocket;
 
         void _run();
         void init();

@@ -30,10 +30,11 @@ void ClientSocket :: abrirConexion () {
     	std::string mensaje = std::string("Error en connect(): ") + std::string(strerror(errno));
     	throw mensaje;
     }
+}
 
+void ClientSocket :: startListener() {
     ClientListener listener(this->fdSocket);
     clientListener = listener.run();
-
 }
 
 int ClientSocket :: enviar ( const void* buffer,const unsigned int buffSize ) {

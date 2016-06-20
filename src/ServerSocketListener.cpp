@@ -38,6 +38,7 @@ void ServerSocketListener::_run() {
     recibido.socket = this->clientSocket;
     peticion = nombre + SEPARATOR + std::to_string(getpid());
     strcpy ( recibido.texto,peticion.c_str() );
+    recibido.msize = peticion.size();
     colaDeEnvio.escribir(recibido);
 
     while(!sigint_handler.signalWasReceived()) {
@@ -45,19 +46,29 @@ void ServerSocketListener::_run() {
         if (!sigint_handler.signalWasReceived()) {
             peticion = buffer;
             peticion.resize(bytesRecibidos);
-            //std::cout << "ServerListener: " << getpid() << ": dato recibido: " << peticion;
+            std::string nickname = peticion.substr(0, peticion.find_first_of(":"));
+            std::string message = peticion.substr(peticion.find_first_of(":")+2, peticion.size());
+            //std::cout << "ServerListener: " << getpid() << ": dato recibido: '" << peticion << "'";
             //std::cout << ", de : " << clientSocket << std::endl;
             Logger::log(nombre + "_L", "recibi " + peticion + " de " + std::to_string(clientSocket) , DEBUG);
 
-            recibido.mtype = (peticion == EXIT_MESSAGE? CONNECTION_END : TEXT);
+            if (message == EXIT_MESSAGE) {
+                recibido.mtype = CONNECTION_END;
+            } else if (nickname == "_client") {
+                recibido.mtype = NICKNAME_REQ;
+            } else {
+                recibido.mtype = TEXT;
+            }
             recibido.socket = this->clientSocket;
-            recibido.msize = bytesRecibidos;
-            strcpy ( recibido.texto,peticion.c_str() );
+            recibido.msize = message.size();
+            strcpy ( recibido.texto,message.c_str() );
+            recibido.nsize = nickname.size();
+            strcpy ( recibido.nickname,nickname.c_str() );
 
             Logger::log(nombre + "_L", "Forwardeo a sender" , DEBUG);
             colaDeEnvio.escribir(recibido);
 
-            if (peticion == EXIT_MESSAGE) {
+            if (message == EXIT_MESSAGE) {
                 raise(SIGINT);
             }
         }

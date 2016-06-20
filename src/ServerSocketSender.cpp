@@ -35,6 +35,7 @@ void ServerSocketSender::_run() {
             //std::cout << "Sender: era connection start con socket: " << recibido.socket << std::endl;
 
             respuesta = recibido.texto;
+            respuesta.resize(recibido.msize);
             int first_sep = respuesta.find_first_of(SEPARATOR, 0);
             std::string nombreFifo = respuesta.substr(0, first_sep);
             //std::cout << "Sender: nombre: " << nombreFifo << std::endl;
@@ -48,9 +49,34 @@ void ServerSocketSender::_run() {
             fifo->abrir();
             fifosDeEnvio.insert(std::pair<int, FifoEscritura*>(recibido.socket, fifo));
 
+        } else if (recibido.mtype == NICKNAME_REQ) {
+            Logger::log("SENDER", "Recibi nickname request de socket: " + std::to_string(recibido.socket) , DEBUG);
+
+            std::string nickname = recibido.texto;
+            nickname.resize(recibido.msize);
+
+            //std::cout << "Sender: me piden nickname: " << nickname << std::endl;
+
+            FifoEscritura* fifo = fifosDeEnvio.at(recibido.socket);
+
+            if (nicknames.find(nickname) == nicknames.end()) {
+                respuesta = "OK";
+                nicknames.insert(nickname);
+                nicknamesBySocket.insert(std::pair<int, std::string>(recibido.socket, nickname));
+            } else {
+                respuesta = "NICKNAME_TAKEN";
+            }
+
+            fifo->escribir(respuesta.c_str(), respuesta.size());
+
         } else if (recibido.mtype == CONNECTION_END) {
             //std::cout << "Sender: era connection end" << std::endl;
             Logger::log("SENDER", "Recibi connection end de socket: " + std::to_string(recibido.socket) , DEBUG);
+
+            std::string nickname = recibido.nickname;
+            nickname.resize(recibido.nsize);
+            std::string message = recibido.texto;
+            message.resize(recibido.msize);
 
             FifoEscritura* fifo = fifosDeEnvio.at(recibido.socket);
             fifo->cerrar();
@@ -61,17 +87,32 @@ void ServerSocketSender::_run() {
             kill(pid, SIGINT);
             serverListeners.erase(recibido.socket);
 
+            std::map<int, std::string>::iterator it = nicknamesBySocket.find(recibido.socket);
+            if(it != nicknamesBySocket.end()){
+                nicknames.erase(it->second);
+                nicknamesBySocket.erase(recibido.socket);
+            }
+
         } else if (recibido.mtype == TEXT) {
-            respuesta = recibido.texto;
-            respuesta.resize(recibido.msize);
+
+            std::string nickname = recibido.nickname;
+            nickname.resize(recibido.nsize);
+            std::string message = recibido.texto;
+            message.resize(recibido.msize);
+
+            respuesta = nickname + ": " + message;
+            //respuesta.resize(recibido.msize);
             Logger::log("SENDER", "Recibi texto: " + respuesta + " de socket: " + std::to_string(recibido.socket) , DEBUG);
             //std::cout << "Sender: era texto: " << respuesta;
             //std::cout << ", tengo " << fifosDeEnvio.size() << " clientes" << std::endl;
+            //std::cout << "Recibi texto: '" << respuesta << "' de socket: " << std::to_string(recibido.socket) << std::endl;
 
             for (std::map<int, FifoEscritura*>::iterator it = fifosDeEnvio.begin();
                     it != fifosDeEnvio.end(); ++it) {
                 //std::cout << "Escribi a " << it->first << std::endl;
-                if(it->first != recibido.socket) {
+                if(it->first != recibido.socket &&
+                    nicknamesBySocket.find(it->first) != nicknamesBySocket.end()) {
+                    //std::cout << "Escribi : " << respuesta << " a " << it->first << std::endl;
                     FifoEscritura* fifo = it->second;
                     fifo->escribir(respuesta.c_str(), respuesta.size());
                 }
@@ -86,7 +127,7 @@ void ServerSocketSender::_run() {
     Logger::log("SENDER", "Cierro todo" , DEBUG);
     for (std::map<int, pid_t>::iterator it = serverListeners.begin();
             it != serverListeners.end(); ++it) {
-        //std::cout << "Escribi a " << it->first << std::endl;
+        //std::cout << "Cierro " << it->second << std::endl;
 
         int status;
         pid_t pid = it->second;
@@ -94,7 +135,9 @@ void ServerSocketSender::_run() {
         waitpid(pid, &status, 0);
     }
 
+    //std::cout << "cierro cola de recibidos" << std::endl;
     colaDeRecibidos.destruir();
+    //std::cout << "holalss" << std::endl;
     unlink(NOM_SERVER_SENDER);
 }
 

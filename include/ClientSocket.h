@@ -24,6 +24,7 @@ class ClientSocket : public Socket {
 		~ClientSocket ();
 
 		void abrirConexion ();
+		void startListener();
 
 		int enviar ( const void* buffer,const unsigned int buffSize );
 		int recibir ( void* buffer,const unsigned int buffSize );

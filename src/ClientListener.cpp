@@ -34,7 +34,7 @@ void ClientListener :: _run() {
             std::string rta = bufferRta;
             rta.resize(longRta);
             Logger::log("C_LISN", "Respuesta de servidor: " + rta , DEBUG);
-            std::cout << "EchoClient: respuesta recibida del servidor: " << rta << std::endl;
+            std::cout << rta << std::endl;
 
             if(rta == EXIT_MESSAGE){
                 kill(getppid(), SIGINT);
