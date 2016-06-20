@@ -54,11 +54,11 @@ void ServerSocketListener::_run() {
                 peticion.substr(0, std::min((int)peticion.size()-1, 10)) +
                 "...' de " + std::to_string(clientSocket) , DEBUG);
 
-            if (message == EXIT_MESSAGE) {
+            if (nickname == EXIT_MESSAGE) {
                 recibido.mtype = CONNECTION_END;
             } else if (nickname == "_client") {
                 recibido.mtype = NICKNAME_REQ;
-            } else if (message == SEPARATOR){
+            } else if (nickname == SEPARATOR){
                 recibido.mtype = GET_LOG;
             } else {
                 recibido.mtype = TEXT;
@@ -72,7 +72,7 @@ void ServerSocketListener::_run() {
             Logger::log(nombre + "_L", "Forwardeo a sender" , DEBUG);
             colaDeEnvio.escribir(recibido);
 
-            if (message == EXIT_MESSAGE) {
+            if (nickname == EXIT_MESSAGE) {
                 raise(SIGINT);
                 kill(clientSender, SIGINT);
             }

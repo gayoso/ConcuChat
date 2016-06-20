@@ -55,7 +55,7 @@ void ClientSocket :: loadChatHistory() {
     startListener();
 
     Logger::log("CLIENT", "Se carga el historial del chat" , DEBUG);
-    mensaje = nickname + ": " + SEPARATOR;
+    mensaje = std::string(SEPARATOR) + ": " + nickname;
     enviar ( static_cast<const void*>(mensaje.c_str()),mensaje.size() );
 }
 
@@ -113,7 +113,7 @@ int ClientSocket :: recibir ( void* buffer,const unsigned int buffSize ) {
 void ClientSocket :: cerrarConexion () {
     std::string mensaje;
     Logger::log("CLIENT", "Cerrando cliente" , DEBUG);
-    mensaje = nickname + ": " + EXIT_MESSAGE;
+    mensaje = std::string(EXIT_MESSAGE) + ": " + nickname;
     enviar(static_cast<const void*>(mensaje.c_str()),mensaje.size());
 
 	close ( this->fdSocket );
