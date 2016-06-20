@@ -11,6 +11,7 @@
 #include "FifoEscritura.h"
 #include <map>
 #include <set>
+#include <vector>
 
 class ServerSocketSender : public Socket, public Runnable
 {
@@ -26,6 +27,7 @@ class ServerSocketSender : public Socket, public Runnable
         std::map<int, pid_t> serverListeners;
         std::set<std::string> nicknames;
         std::map<int, std::string> nicknamesBySocket;
+        std::vector<std::string> historial;
 
         void _run();
         void init();

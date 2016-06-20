@@ -8,6 +8,7 @@
 #define CONNECTION_START 2
 #define CONNECTION_END 3
 #define NICKNAME_REQ 4
+#define GET_LOG 5
 
 typedef struct mensaje {
 	long mtype;

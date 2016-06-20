@@ -1,6 +1,7 @@
 #include "ServerSocketSender.h"
 #include "SignalHandler.h"
 #include "SIG_Trap.h"
+#include <fstream>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -69,6 +70,14 @@ void ServerSocketSender::_run() {
 
             fifo->escribir(respuesta.c_str(), respuesta.size());
 
+        } else if (recibido.mtype == GET_LOG) {
+            Logger::log("SENDER", "Recibi get log: " + std::to_string(recibido.socket) , DEBUG);
+
+            FifoEscritura* fifo = fifosDeEnvio.at(recibido.socket);
+            for(int i = 0; i < historial.size(); ++i) {
+                fifo->escribir(historial[i].c_str(), historial[i].size());
+            }
+
         } else if (recibido.mtype == CONNECTION_END) {
             //std::cout << "Sender: era connection end" << std::endl;
             Logger::log("SENDER", "Recibi connection end de socket: " + std::to_string(recibido.socket) , DEBUG);
@@ -100,8 +109,9 @@ void ServerSocketSender::_run() {
             std::string message = recibido.texto;
             message.resize(recibido.msize);
 
-            respuesta = nickname + ": " + message;
+            respuesta = nickname + ": " + message + "\n";
             //respuesta.resize(recibido.msize);
+            historial.push_back(respuesta);
             Logger::log("SENDER", "Recibi texto: " + respuesta + " de socket: " + std::to_string(recibido.socket) , DEBUG);
             //std::cout << "Sender: era texto: " << respuesta;
             //std::cout << ", tengo " << fifosDeEnvio.size() << " clientes" << std::endl;
@@ -134,6 +144,14 @@ void ServerSocketSender::_run() {
         kill(pid, SIGINT);
         waitpid(pid, &status, 0);
     }
+
+    std::ofstream chat_log;
+    chat_log.open("chat_log.txt", std::ofstream::out);
+    for(int i = 0; i < historial.size(); ++i) {
+        chat_log << historial[i];
+    }
+    chat_log.close();
+
 
     //std::cout << "cierro cola de recibidos" << std::endl;
     colaDeRecibidos.destruir();

@@ -53,6 +53,9 @@ int main ( int argc,char *argv[] ) {
         }
 
         socket.startListener();
+        mensaje = nickname + ": " + SEPARATOR;
+        socket.enviar ( static_cast<const void*>(mensaje.c_str()),mensaje.size() );
+
         char entrada[BUFFSIZE];
 		while(!sigint_handler.signalWasReceived()) {
 			std::cin.getline ( entrada,BUFFSIZE );

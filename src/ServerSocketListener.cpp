@@ -56,6 +56,8 @@ void ServerSocketListener::_run() {
                 recibido.mtype = CONNECTION_END;
             } else if (nickname == "_client") {
                 recibido.mtype = NICKNAME_REQ;
+            } else if (message == SEPARATOR){
+                recibido.mtype = GET_LOG;
             } else {
                 recibido.mtype = TEXT;
             }

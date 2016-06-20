@@ -3,7 +3,7 @@
 
 #define CLIENT_ID "_client"
 #define EXIT_MESSAGE "_"
-#define SEPARATOR '#'
+#define SEPARATOR "#"
 #define BUFFSIZE 255
 #define NICKSIZE 20
 #define SERVER_PORT 16000
