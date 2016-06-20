@@ -28,13 +28,19 @@ void ServerSocket :: abrirConexion () {
 						sizeof(this->serv_addr) );
 	if ( bindOk < 0 ) {
 		std::string mensaje = std::string("Error en bind(): ") + std::string(strerror(errno));
-		throw mensaje;
+		Logger::log("SERVER", mensaje, DEBUG);
+		//throw mensaje;
+		raise(SIGINT);
+		return;
 	}
 
 	int listenOk = listen ( this->fdSocket,CONEXIONES_PENDIENTES );
 	if ( listenOk < 0 ) {
 		std::string mensaje = std::string("Error en listen(): ") + std::string(strerror(errno));
-		throw mensaje;
+		Logger::log("SERVER", mensaje, DEBUG);
+		//throw mensaje;
+		raise(SIGINT);
+		return;
 	}
 
 	//std::cout << "termine listen" << std::endl;

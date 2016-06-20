@@ -32,8 +32,10 @@ void ServerSocketClSender::_run() {
         if (!sigint_handler.signalWasReceived()) {
             respuesta = buffer;
             respuesta.resize(bytesLeidos);
-            Logger::log(nombre, "Envio " + respuesta, DEBUG);
-            //std::cout << "ServerClSender: envio " << respuesta << std::endl;
+
+            Logger::log(nombre, "Envio '" +
+                respuesta.substr(0, std::min((int)respuesta.size()-1, 10)) + "...'", DEBUG);
+
             enviar(respuesta.c_str(), respuesta.size());
         }
     }

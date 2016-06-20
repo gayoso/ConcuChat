@@ -1,0 +1,49 @@
+14:40:29.693553	SERVER	4396	D.	Creo sender
+14:40:29.694276	SERVER	4396	D.	Empiezo listen
+14:40:29.694397	SERVER	4396	D.	Termine listen
+14:40:29.694448	MAIN_SV	4396	D.	Arranco server
+14:40:29.694493	SERVER	4396	D.	Empiezo accept
+14:40:31.171035	MAIN_CL	4400	D.	Abriendo cliente
+14:40:31.172348	CLIENT	4400	D.	Chequeando caracteres de nickname
+14:40:31.172414	SERVER	4396	D.	Termine accept
+14:40:31.172463	CLIENT	4400	D.	Intentando registrar nickname: _client
+14:40:31.172598	SERVER	4396	D.	Accepto en socket 4
+14:40:31.173196	SERVER	4396	D.	Empiezo accept
+14:40:31.173413	SNDR1_L	4401	D.	Creo cl sender
+14:40:31.173645	SNDR1	4401	D.	Creo estructuras temporales
+14:40:31.174233	SNDR1_L	4401	D.	Mando CONN START a sender
+14:40:31.174354	SNDR1	4402	D.	Empiezo cl sender
+14:40:31.174522	SNDR1_L	4401	D.	recibi '_client: f...' de 4
+14:40:31.174601	SENDER	4397	D.	Recibi connection start de socket: 4
+14:40:31.174630	SNDR1_L	4401	D.	Forwardeo a sender
+14:40:31.174888	SENDER	4397	D.	Recibi nickname request de socket: 4
+14:40:31.175141	SNDR1	4402	D.	Envio 'O...'
+14:40:31.175417	CLIENT	4400	D.	Se ingreso con nickname: _client
+14:40:31.175533	CLIENT	4400	D.	Se inicia el listener
+14:40:31.176020	CLIENT	4400	D.	Se carga el historial del chat
+14:40:31.176182	C_LISN	4403	D.	Empiezo a escuchar al servidor
+14:40:31.176267	SNDR1_L	4401	D.	recibi 'fede: ...' de 4
+14:40:31.176380	SNDR1_L	4401	D.	Forwardeo a sender
+14:40:31.176518	SENDER	4397	D.	Recibi get log: 4
+14:40:31.176705	SNDR1	4402	D.	Envio '--- ingres...'
+14:40:31.177022	C_LISN	4403	D.	Respuesta de servidor: '--- ingres...'
+14:40:32.397107	SNDR1_L	4401	D.	recibi 'fede: hol...' de 4
+14:40:32.397393	SNDR1_L	4401	D.	Forwardeo a sender
+14:40:32.397608	SENDER	4397	D.	Recibi texto: 'fede: hola...' de socket: 4
+14:40:33.026328	SNDR1_L	4401	D.	recibi 'fede: adsa...' de 4
+14:40:33.026602	SNDR1_L	4401	D.	Forwardeo a sender
+14:40:33.026846	SENDER	4397	D.	Recibi texto: 'fede: adsa...' de socket: 4
+14:40:33.467416	CLIENT	4400	D.	Cerrando cliente
+14:40:33.468000	SNDR1_L	4401	D.	recibi 'fede: ...' de 4
+14:40:33.468169	SNDR1_L	4401	D.	Forwardeo a sender
+14:40:33.468355	SENDER	4397	D.	Recibi connection end de socket: 4
+14:40:33.468367	SNDR1_L	4401	D.	Cierro todo
+14:40:33.468391	MAIN_CL	4400	D.	Fin del programa
+14:40:33.468796	SNDR1	4402	D.	Envio exit message
+14:40:33.469055	SNDR1	4402	D.	Cierro estructuras temporales
+14:40:34.335566	SENDER	4397	D.	Cierro todo
+14:40:34.335591	SERVER	4396	D.	Termine accept
+14:40:34.336876	SERVER	4396	D.	Accept interrumpido
+14:40:34.336995	MAIN_SV	4396	D.	Cierro server
+14:40:34.337054	SERVER	4396	D.	Cierro sender
+14:40:34.337191	MAIN_SV	4396	D.	Fin del programa

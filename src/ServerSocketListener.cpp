@@ -50,7 +50,9 @@ void ServerSocketListener::_run() {
             std::string message = peticion.substr(peticion.find_first_of(":")+2, peticion.size());
             //std::cout << "ServerListener: " << getpid() << ": dato recibido: '" << peticion << "'";
             //std::cout << ", de : " << clientSocket << std::endl;
-            Logger::log(nombre + "_L", "recibi " + peticion + " de " + std::to_string(clientSocket) , DEBUG);
+            Logger::log(nombre + "_L", "recibi '" +
+                peticion.substr(0, std::min((int)peticion.size()-1, 10)) +
+                "...' de " + std::to_string(clientSocket) , DEBUG);
 
             if (message == EXIT_MESSAGE) {
                 recibido.mtype = CONNECTION_END;
@@ -72,6 +74,7 @@ void ServerSocketListener::_run() {
 
             if (message == EXIT_MESSAGE) {
                 raise(SIGINT);
+                kill(clientSender, SIGINT);
             }
         }
     }

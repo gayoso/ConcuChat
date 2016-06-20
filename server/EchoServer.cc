@@ -18,13 +18,9 @@ int main () {
 
     Logger::log("MAIN_SV", "Arranco server" , DEBUG);
     //std::cout << "EchoServer: esperando conexiones" << std::endl;
-    try {
-        while (!sigint_handler.signalWasReceived()) {
-            socket.aceptarCliente();
-        }
-    } catch ( std::string& mensaje ) {
-		std::cout << mensaje << std::endl;
-	}
+    while (!sigint_handler.signalWasReceived()) {
+        socket.aceptarCliente();
+    }
 
     //std::cout << "EchoServer: cerrando accepter" << std::endl;
     Logger::log("MAIN_SV", "Cierro server" , DEBUG);

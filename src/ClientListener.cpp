@@ -33,7 +33,8 @@ void ClientListener :: _run() {
         if (!sigint_handler.signalWasReceived()) {
             std::string rta = bufferRta;
             rta.resize(longRta);
-            Logger::log("C_LISN", "Respuesta de servidor: " + rta , DEBUG);
+            Logger::log("C_LISN", "Respuesta de servidor: '" +
+                rta.substr(0, std::min((int)rta.size()-1, 10)) + "...'", DEBUG);
             std::cout << rta /*<< std::endl*/;
 
             if(rta == EXIT_MESSAGE){

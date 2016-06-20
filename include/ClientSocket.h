@@ -10,7 +10,6 @@
 #include <string.h>
 #include <errno.h>
 #include <unistd.h>
-
 #include "Socket.h"
 
 class ClientSocket : public Socket {
@@ -18,12 +17,16 @@ class ClientSocket : public Socket {
 	private:
 		std::string ipServidor;
 		pid_t clientListener;
+		std::string nickname;
 
 	public:
-		ClientSocket ( const std::string& ipServidor,const unsigned int port );
+		ClientSocket ( const std::string& ipServidor,const unsigned int port, std::string nickname );
 		~ClientSocket ();
 
 		void abrirConexion ();
+		void registrarNickname();
+		void loadChatHistory();
+		void handleInput(std::string entrada);
 		void startListener();
 
 		int enviar ( const void* buffer,const unsigned int buffSize );

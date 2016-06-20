@@ -13,7 +13,7 @@
 #include <set>
 #include <vector>
 
-class ServerSocketSender : public Socket, public Runnable
+class ServerSocketSender : public Runnable
 {
     public:
 
@@ -32,7 +32,10 @@ class ServerSocketSender : public Socket, public Runnable
         void _run();
         void init();
 
-        int enviar ( const void* buffer,const unsigned int buffSize, int index );
+        void forwardAll(std::string respuesta);
+        void forwardAllButSender(std::string respuesta, int sender);
+        void addToChatLog(std::string respuesta);
+        void emptyLogToFile();
 
     private:
 
