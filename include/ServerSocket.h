@@ -11,7 +11,8 @@
 #include <errno.h>
 #include <unistd.h>
 #include <vector>
-
+#include "MemoriaCompartida.h"
+#include "Semaforo.h"
 #include "Socket.h"
 
 
@@ -20,6 +21,8 @@ class ServerSocket : public Socket {
 	protected:
 		//int clientSocket;
 		static const int CONEXIONES_PENDIENTES = 20;
+		MemoriaCompartida<int> socketToClose;
+		Semaforo sem_socketToClose;
 		unsigned int clientCount;
         pid_t serverSender;
 
@@ -31,6 +34,7 @@ class ServerSocket : public Socket {
 
 		void abrirConexion ();
 		void aceptarCliente();
+		void cerrarSocketsNoUsados();
 
 		//int enviar ( const void* buffer,const unsigned int buffSize );
 		//int recibir ( void* buffer,const unsigned int buffSize );

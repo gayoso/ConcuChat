@@ -62,7 +62,7 @@
 	<sys/types.h>
 	<string>
 
-1466443595 source:/home/gabriel/concu/ConcuChat/src/ServerSocket.cpp
+1466535432 source:/home/gabriel/concu/ConcuChat/src/ServerSocket.cpp
 	"ServerSocket.h"
 	"ServerSocketListener.h"
 	"ServerSocketClSender.h"
@@ -72,7 +72,7 @@
 	<unistd.h>
 	<sys/wait.h>
 
-1466360821 /home/gabriel/concu/ConcuChat/include/ServerSocket.h
+1466534493 /home/gabriel/concu/ConcuChat/include/ServerSocket.h
 	<sys/types.h>
 	<sys/socket.h>
 	<strings.h>
@@ -83,9 +83,11 @@
 	<errno.h>
 	<unistd.h>
 	<vector>
+	"MemoriaCompartida.h"
+	"Semaforo.h"
 	"Socket.h"
 
-1466439097 /home/gabriel/concu/ConcuChat/include/defines.h
+1466532271 /home/gabriel/concu/ConcuChat/include/defines.h
 
 1462859450 source:/home/gabriel/concu/ConcuChat/src/SIG_Trap.cpp
 	"SIG_Trap.h"
@@ -109,7 +111,7 @@
 1410147822 source:/home/gabriel/concu/ConcuChat/src/Socket.cpp
 	"Socket.h"
 
-1466443633 source:/home/gabriel/concu/ConcuChat/server/EchoServer.cc
+1466534574 source:/home/gabriel/concu/ConcuChat/server/EchoServer.cc
 	<iostream>
 	"ServerSocket.h"
 	"ServerSocketSender.h"
@@ -120,7 +122,7 @@
 	<vector>
 	<sys/wait.h>
 
-1466451156 source:/home/gabriel/concu/ConcuChat/src/ServerSocketListener.cpp
+1466451476 source:/home/gabriel/concu/ConcuChat/src/ServerSocketListener.cpp
 	"ServerSocketListener.h"
 	"defines.h"
 	"SignalHandler.h"
@@ -135,7 +137,7 @@
 	"Cola.h"
 	"ServerMensaje.h"
 
-1466444390 source:/home/gabriel/concu/ConcuChat/src/ServerSocketSender.cpp
+1466535603 source:/home/gabriel/concu/ConcuChat/src/ServerSocketSender.cpp
 	"ServerSocketSender.h"
 	"SignalHandler.h"
 	"SIG_Trap.h"
@@ -146,7 +148,7 @@
 	<iostream>
 	<sys/wait.h>
 
-1466441637 /home/gabriel/concu/ConcuChat/include/ServerSocketSender.h
+1466534506 /home/gabriel/concu/ConcuChat/include/ServerSocketSender.h
 	"defines.h"
 	"MemoriaCompartida.h"
 	"Semaforo.h"
@@ -159,7 +161,7 @@
 	<set>
 	<vector>
 
-1466214790 /home/gabriel/concu/ConcuChat/include/MemoriaCompartida.h
+1466535318 /home/gabriel/concu/ConcuChat/include/MemoriaCompartida.h
 	<sys/types.h>
 	<sys/ipc.h>
 	<sys/shm.h>
@@ -176,8 +178,9 @@
 1466405378 /home/gabriel/concu/ConcuChat/include/ServerMensaje.h
 	"defines.h"
 
-1465775230 source:/home/gabriel/concu/ConcuChat/src/Fifo.cpp
+1466526829 source:/home/gabriel/concu/ConcuChat/src/Fifo.cpp
 	"Fifo.h"
+	"Logger.h"
 	<stdio.h>
 
 1465775230 /home/gabriel/concu/ConcuChat/include/Fifo.h
@@ -187,15 +190,17 @@
 	<fcntl.h>
 	<unistd.h>
 
-1465775230 source:/home/gabriel/concu/ConcuChat/src/FifoEscritura.cpp
+1466526789 source:/home/gabriel/concu/ConcuChat/src/FifoEscritura.cpp
 	"FifoEscritura.h"
+	"Logger.h"
 	<stdio.h>
 
 1465775230 /home/gabriel/concu/ConcuChat/include/FifoEscritura.h
 	"Fifo.h"
 
-1465775230 source:/home/gabriel/concu/ConcuChat/src/FifoLectura.cpp
+1466526816 source:/home/gabriel/concu/ConcuChat/src/FifoLectura.cpp
 	"FifoLectura.h"
+	"Logger.h"
 	<stdio.h>
 
 1465775230 /home/gabriel/concu/ConcuChat/include/FifoLectura.h

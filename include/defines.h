@@ -7,7 +7,9 @@
 #define BUFFSIZE 255
 #define NICKSIZE 20
 #define SERVER_PORT 16000
-#define MAX_CLIENTS 20
+
+#define NOM_SERVER_SOCKETS "sockets"
+#define C_SERVER_SOCKETS 0
 
 #define NOM_SERVER_SENDER "SNDR"
 #define C_SENDER_RECIBIDOS 0

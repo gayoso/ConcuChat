@@ -28,6 +28,8 @@ class ServerSocketSender : public Runnable
         std::set<std::string> nicknames;
         std::map<int, std::string> nicknamesBySocket;
         std::vector<std::string> historial;
+        MemoriaCompartida<int> socketToClose;
+        Semaforo sem_socketToClose;
 
         void _run();
         void init();

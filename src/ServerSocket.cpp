@@ -7,13 +7,32 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-ServerSocket :: ServerSocket ( const unsigned int port ) : Socket ( port ), clientCount(0) {
+ServerSocket :: ServerSocket ( const unsigned int port )
+    : Socket ( port ), clientCount(0),
+    sem_socketToClose(NOM_SERVER_SOCKETS, C_SERVER_SOCKETS, 0),
+    socketToClose(NOM_SERVER_SOCKETS, C_SERVER_SOCKETS)
+{
     Logger::log("SERVER", "Creo sender", DEBUG);
+
+    close ( open ( NOM_SERVER_SOCKETS,O_CREAT,0777 ) );
+	socketToClose.crear();
+	sem_socketToClose.crear();
+
 	ServerSocketSender sender;
 	serverSender = sender.run();
 }
 
 ServerSocket :: ~ServerSocket () {
+}
+
+void ServerSocket :: cerrarSocketsNoUsados() {
+
+    int socket = socketToClose.leer();
+    //socketToClose.escribir(-1);
+    close(socket);
+
+    Logger::log("SERVER", "Cierro socket " + std::to_string(socket), DEBUG);
+    sem_socketToClose.v();
 }
 
 void ServerSocket :: abrirConexion () {
@@ -81,5 +100,13 @@ void ServerSocket :: cerrarConexion () {
 	int status;
 	kill(serverSender, SIGINT);
 	waitpid(serverSender, &status, 0);
+
+	Logger::log("SERVER", "Libero memoria socket no usados", DEBUG);
+	socketToClose.liberar();
+
+	Logger::log("SERVER", "Libero semaforo socket no usados", DEBUG);
+	sem_socketToClose.eliminar();
+
+	unlink(NOM_SERVER_SOCKETS);
 	close ( this->fdSocket );
 }

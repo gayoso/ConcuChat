@@ -8,7 +8,10 @@
 #include <iostream>
 #include <sys/wait.h>
 
-ServerSocketSender::ServerSocketSender() : colaDeRecibidos(NOM_SERVER_SENDER, C_SENDER_RECIBIDOS)
+ServerSocketSender::ServerSocketSender()
+    : colaDeRecibidos(NOM_SERVER_SENDER, C_SENDER_RECIBIDOS),
+        socketToClose(NOM_SERVER_SOCKETS, C_SERVER_SOCKETS),
+        sem_socketToClose(NOM_SERVER_SOCKETS, C_SERVER_SOCKETS, 0)
 {
 
 }
@@ -107,6 +110,10 @@ void ServerSocketSender::_run() {
                 nicknamesBySocket.erase(recibido.socket);
             }
 
+            socketToClose.escribir(recibido.socket);
+            kill(getppid(), SIGUSR1);
+            sem_socketToClose.p();
+
         } else if (recibido.mtype == TEXT) {
 
             std::string nickname = recibido.nickname;
@@ -135,6 +142,7 @@ void ServerSocketSender::_run() {
     }
 
     emptyLogToFile();
+    //socketToClose.liberar();
     colaDeRecibidos.destruir();
     unlink(NOM_SERVER_SENDER);
 }
@@ -155,5 +163,7 @@ void ServerSocketSender::emptyLogToFile() {
 void ServerSocketSender::init() {
     close ( open ( NOM_SERVER_SENDER,O_CREAT,0777 ) );
 
+    socketToClose.get();
+    sem_socketToClose.get();
     colaDeRecibidos.crear();
 }

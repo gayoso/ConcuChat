@@ -28,6 +28,7 @@ public:
 	MemoriaCompartida (const std::string& archivo,const char letra);
 	~MemoriaCompartida ();
 	int crear ();
+	int get();
 	void liberar ();
 	void escribir ( const T& dato );
 	T leer () const;
@@ -71,6 +72,35 @@ template <class T> int MemoriaCompartida<T> :: crear () {
 	}
 }
 
+template <class T> int MemoriaCompartida<T> :: get () {
+
+	// generacion de la clave
+	key_t clave = ftok ( archivo.c_str(),letra );
+	if ( clave == -1 ){
+        Logger::logErrno(getName() + "_crear_ftok");
+		return ERROR_FTOK;
+	} else {
+		// creacion de la memoria compartida
+		this->shmId = shmget ( clave,sizeof(T),0644 );
+
+		if ( this->shmId == -1 ){
+            Logger::logErrno(getName() + "_crear_shmget");
+			return ERROR_SHMGET;
+		} else {
+			// attach del bloque de memoria al espacio de direcciones del proceso
+			void* ptrTemporal = shmat ( this->shmId,NULL,0 );
+
+			if ( ptrTemporal == (void *) -1 ) {
+                Logger::logErrno(getName() + "_crear_shmat");
+				return ERROR_SHMAT;
+			} else {
+				this->ptrDatos = static_cast<T*> (ptrTemporal);
+				return SHM_OK;
+			}
+		}
+	}
+}
+
 
 template <class T> void MemoriaCompartida<T> :: liberar () {
 	// detach del bloque de memoria
@@ -78,9 +108,9 @@ template <class T> void MemoriaCompartida<T> :: liberar () {
 
 	int procAdosados = this->cantidadProcesosAdosados ();
 
-	if ( procAdosados == 0 ) {
+	//if ( procAdosados == 0 ) {
 		shmctl ( this->shmId,IPC_RMID,NULL );
-	}
+	//}
 }
 
 template <class T> void MemoriaCompartida<T> :: escribir ( const T& dato ) {
