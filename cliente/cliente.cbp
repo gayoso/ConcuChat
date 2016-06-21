@@ -39,6 +39,7 @@
 		</Compiler>
 		<Unit filename="../include/ClientListener.h" />
 		<Unit filename="../include/ClientSocket.h" />
+		<Unit filename="../include/Color.h" />
 		<Unit filename="../include/EventHandler.h" />
 		<Unit filename="../include/LockFile.h" />
 		<Unit filename="../include/Logger.h" />
@@ -51,6 +52,7 @@
 		<Unit filename="../include/defines.h" />
 		<Unit filename="../src/ClientListener.cpp" />
 		<Unit filename="../src/ClientSocket.cpp" />
+		<Unit filename="../src/Color.cpp" />
 		<Unit filename="../src/LockFile.cpp" />
 		<Unit filename="../src/Logger.cpp" />
 		<Unit filename="../src/Runnable.cpp" />

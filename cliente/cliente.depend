@@ -122,14 +122,22 @@
 	"SIG_Trap.h"
 	"Logger.h"
 
-1466444411 source:/home/gabriel/concu/ConcuChat/src/ClientListener.cpp
+1466490511 source:/home/gabriel/concu/ConcuChat/src/ClientListener.cpp
 	"ClientListener.h"
 	"SignalHandler.h"
 	"SIG_Trap.h"
 	"defines.h"
 	"Logger.h"
+	"Color.h"
+	<string>
 	<iostream>
 
 1466362281 /home/gabriel/concu/ConcuChat/include/ClientListener.h
 	"Runnable.h"
+
+1466490611 source:/home/gabriel/concu/ConcuChat/src/Color.cpp
+	"Color.h"
+
+1466489239 /home/gabriel/concu/ConcuChat/include/Color.h
+	<string>
 
