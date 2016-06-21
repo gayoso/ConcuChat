@@ -141,3 +141,94 @@
 1466489239 /home/gabriel/concu/ConcuChat/include/Color.h
 	<string>
 
+1466547779 source:/home/eduu/Facultad/Concu/ConcuChat/src/ClientListener.cpp
+	"ClientListener.h"
+	"SignalHandler.h"
+	"SIG_Trap.h"
+	"defines.h"
+	"Logger.h"
+	"Color.h"
+	<string>
+	<iostream>
+
+1466547779 /home/eduu/Facultad/Concu/ConcuChat/include/ClientListener.h
+	"Runnable.h"
+
+1466547779 /home/eduu/Facultad/Concu/ConcuChat/include/Runnable.h
+	<unistd.h>
+
+1466547779 /home/eduu/Facultad/Concu/ConcuChat/include/SignalHandler.h
+	<signal.h>
+	<stdio.h>
+	<memory.h>
+	"EventHandler.h"
+
+1466547779 /home/eduu/Facultad/Concu/ConcuChat/include/EventHandler.h
+
+1466547779 /home/eduu/Facultad/Concu/ConcuChat/include/SIG_Trap.h
+	<signal.h>
+	<assert.h>
+	"EventHandler.h"
+
+1466547779 /home/eduu/Facultad/Concu/ConcuChat/include/defines.h
+
+1466547779 /home/eduu/Facultad/Concu/ConcuChat/include/Logger.h
+	<string>
+	"Runnable.h"
+
+1466547779 /home/eduu/Facultad/Concu/ConcuChat/include/Color.h
+	<string>
+
+1466547779 source:/home/eduu/Facultad/Concu/ConcuChat/src/Color.cpp
+	"Color.h"
+
+1466547779 source:/home/eduu/Facultad/Concu/ConcuChat/src/LockFile.cpp
+	"LockFile.h"
+
+1466547779 /home/eduu/Facultad/Concu/ConcuChat/include/LockFile.h
+	<unistd.h>
+	<fcntl.h>
+	<string>
+
+1466547779 source:/home/eduu/Facultad/Concu/ConcuChat/src/Logger.cpp
+	"Logger.h"
+	<fstream>
+	<ctime>
+	<sys/time.h>
+	"errno.h"
+	"string.h"
+	"LockFile.h"
+
+1466547779 source:/home/eduu/Facultad/Concu/ConcuChat/src/Runnable.cpp
+	<unistd.h>
+	<stdlib.h>
+	<stdio.h>
+	"Runnable.h"
+	"LockFile.h"
+
+1466547779 source:/home/eduu/Facultad/Concu/ConcuChat/src/Semaforo.cpp
+	"Semaforo.h"
+	"LockFile.h"
+	"Logger.h"
+
+1466547779 /home/eduu/Facultad/Concu/ConcuChat/include/Semaforo.h
+	<sys/ipc.h>
+	<sys/sem.h>
+	<sys/types.h>
+	<string>
+
+1466547779 source:/home/eduu/Facultad/Concu/ConcuChat/src/SIG_Trap.cpp
+	"SIG_Trap.h"
+
+1466547779 source:/home/eduu/Facultad/Concu/ConcuChat/src/SignalHandler.cpp
+	"SignalHandler.h"
+
+1466547779 source:/home/eduu/Facultad/Concu/ConcuChat/src/Socket.cpp
+	"Socket.h"
+
+1466547779 /home/eduu/Facultad/Concu/ConcuChat/include/Socket.h
+	<sys/types.h>
+	<sys/socket.h>
+	<strings.h>
+	<netinet/in.h>
+

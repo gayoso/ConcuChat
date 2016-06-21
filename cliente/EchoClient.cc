@@ -24,6 +24,8 @@ int main ( int argc,char *argv[] ) {
     socket.abrirConexion();
     if(!sigint_handler.signalWasReceived()){
         socket.registrarNickname();
+    }
+    if (!sigint_handler.signalWasReceived()) {
         socket.loadChatHistory();
     }
     while (!sigint_handler.signalWasReceived()) {
