@@ -14,7 +14,7 @@
 #include "MemoriaCompartida.h"
 #include "Semaforo.h"
 #include "Socket.h"
-
+#include <map>
 
 class ServerSocket : public Socket {
 
@@ -22,6 +22,7 @@ class ServerSocket : public Socket {
 		//int clientSocket;
 		static const int CONEXIONES_PENDIENTES = 20;
 		MemoriaCompartida<int> socketToClose;
+		std::map<int, pid_t> serverListeners;
 		Semaforo sem_socketToClose;
 		unsigned int clientCount;
         pid_t serverSender;

@@ -72,7 +72,7 @@
 	<unistd.h>
 	<sys/wait.h>
 
-1466534493 /home/gabriel/concu/ConcuChat/include/ServerSocket.h
+1466701708 /home/gabriel/concu/ConcuChat/include/ServerSocket.h
 	<sys/types.h>
 	<sys/socket.h>
 	<strings.h>
@@ -86,6 +86,7 @@
 	"MemoriaCompartida.h"
 	"Semaforo.h"
 	"Socket.h"
+	<map>
 
 1466532271 /home/gabriel/concu/ConcuChat/include/defines.h
 

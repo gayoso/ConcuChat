@@ -138,7 +138,7 @@ void ServerSocketSender::_run() {
         int status;
         pid_t pid = it->second;
         kill(pid, SIGINT);
-        waitpid(pid, &status, 0);
+        //waitpid(pid, &status, 0);
     }
 
     emptyLogToFile();

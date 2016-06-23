@@ -33,6 +33,11 @@ void ServerSocket :: cerrarSocketsNoUsados() {
 
     Logger::log("SERVER", "Cierro socket " + std::to_string(socket), DEBUG);
     sem_socketToClose.v();
+
+    pid_t pid = serverListeners.find(socket)->second;
+    serverListeners.erase(socket);
+    int status;
+    waitpid(pid, &status, 0);
 }
 
 void ServerSocket :: abrirConexion () {
@@ -90,6 +95,7 @@ void ServerSocket :: aceptarCliente() {
 
         ServerSocketListener listener(clientSocket, NOM_SERVER_SENDER + std::to_string(++clientCount));
         pid_t pid = listener.run();
+        serverListeners.insert(std::pair<int, pid_t>(clientSocket, pid));
 
         //close(clientSocket);
 	}
